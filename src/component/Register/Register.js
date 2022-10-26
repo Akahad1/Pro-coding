@@ -8,7 +8,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import './Register.css'
 
 const Register = () => {
-  const {createPasswordWithEmail,singInWithGoogle ,singInWithGithub} =useContext(AuthContext)
+  const {createPasswordWithEmail,singInWithGoogle ,singInWithGithub,profileUpdata} =useContext(AuthContext)
   const [error,setError]=useState(null)
   const registionHandler =(event)=>{
     event.preventDefault()
@@ -16,11 +16,13 @@ const Register = () => {
     const name =form.name.value
     const email =form.email.value
     const password =form.password.value
-    console.log(name,email,password)
+    const photourl=form.photourl.value
+    console.log(name,email,password,photourl)
     createPasswordWithEmail(email,password)
     .then(result=>{
       const user =result.user
       console.log(user)
+      allUpdate(name,photourl)
       form.reset()
 
     })
@@ -47,6 +49,18 @@ const Register = () => {
       setError(errorMessage)
       console.error("error",error)
     })
+  }
+  const allUpdate=(name,photourl)=>{
+    const profile={
+      displayName:name,
+      PhotoURL:photourl
+    }
+    profileUpdata(profile)
+    .then(result=>{
+      const user =result.user
+      console.log(user)
+    })
+    .catch(error=>console.error("error",error))
   }
    
 

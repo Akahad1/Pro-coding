@@ -2,6 +2,7 @@ import { async } from '@firebase/util';
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Blogs from '../component/Bolg/Blog';
+import ChackOut from '../component/Chackout/ChackOut';
 import Courses from '../component/Courses/Courses';
 import CoursesDetails from '../component/CoursesDetails/CoursesDetails';
 import Home from '../component/Home/Home';
@@ -25,7 +26,10 @@ import Main from '../layout/Main';
         {path:"/courses/:id" ,element :<CoursesDetails></CoursesDetails>,
         loader: async({params})=>fetch(`http://localhost:5000/courses/${params.id}`)
     
-    }
+    },{path:"/chackout/:id",element:<ChackOut></ChackOut>,
+    loader: async({params})=>fetch(`http://localhost:5000/courses/${params.id}`)
+
+ }
     ]
     
 },

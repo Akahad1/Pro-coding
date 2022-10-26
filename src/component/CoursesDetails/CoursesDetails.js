@@ -4,7 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const CoursesDetails = () => {
     const data=useLoaderData()
-    const {name,titel,img,body}= data
+    const {name,titel,img,body,id}= data
     
     return (
         <div className='mt-5 d-flex justify-content-center align-items-center'> 
@@ -16,7 +16,7 @@ const CoursesDetails = () => {
         <Card.Text>
           {body}
         </Card.Text>
-        <Button variant="dark"><Link >Get premiumaess</Link></Button>
+        <Button variant="dark"><Link to={`/chackout/${id}`} >Get premiumaess</Link></Button>
       </Card.Body>
     </Card>
             
