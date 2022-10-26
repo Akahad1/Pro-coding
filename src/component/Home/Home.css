@@ -1,0 +1,18 @@
+.home{
+    background-image: url(https://cdn.elearningindustry.com/wp-content/uploads/2020/08/elearning-vs-classroom-based-learning.png);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    filter: brightness(50%);
+    
+
+    
+
+}
+
+ .paragarg{
+    color:red;
+    filter: brightness(100%);
+ }
