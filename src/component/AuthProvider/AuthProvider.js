@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../fairebase.config';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth'
 
  const auth =getAuth(app)
  export const AuthContext =createContext()
@@ -17,6 +17,18 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, provider)
 
     }
+
+    // logOut
+    const logOut =()=>{
+        return signOut(auth)
+    }
+    // loginWith github
+    const singInWithGithub=(provider)=>{
+        return signInWithPopup(auth, provider)
+        
+
+    }
+
     // some changess
     useEffect(()=>{
         const unsubscribe =onAuthStateChanged(auth,(currentUser)=>{
@@ -28,7 +40,12 @@ const AuthProvider = ({children}) => {
     },[])
 
     
-    const authInfo ={user,createPasswordWithEmail,singInWithGoogle}
+    const authInfo ={user,
+        createPasswordWithEmail,
+        logOut,
+        singInWithGithub,
+        
+        singInWithGoogle}
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

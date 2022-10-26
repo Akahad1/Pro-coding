@@ -10,7 +10,13 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Header = () => {
-  const {user}=useContext(AuthContext)
+  const {user,logOut}=useContext(AuthContext)
+  const logOutHandler=()=>{
+    logOut()
+    .then(()=>{})
+    .catch(error=>console.error("error",error))
+
+  }
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg='dark' variant='dark' >
@@ -29,17 +35,17 @@ const Header = () => {
           <Nav>
           
 
-            <Nav.Link href="#deets"><Link  className='anhor' to='/register'>Register</Link></Nav.Link>
+            
             {user?.uid ?
              <>
-             <Nav.Link href="#deets"><Link  className='anhor' to='/register'>Log Out</Link></Nav.Link>
-             <Nav.Link href="#pricing"><Image rounded src={user.photoURL}></Image></Nav.Link>
+             <Nav.Link href="#deets"><Link onClick={logOutHandler}  className='anhor' to='/register'>Log Out</Link></Nav.Link>
+             <Nav.Link href="#pricing"><Image className='img-size' rounded src={user.photoURL}></Image></Nav.Link>
              
              
              </>
               :<>
-             <Link to='/login'>Log In</Link>
-             <Link to='/register'>Register</Link></> }
+             <Link  className='anhor mx-2'  to='/login'>Log In</Link>
+             <Link  className='anhor'  to='/register'>Register</Link></> }
             
             <Nav.Link eventKey={2} href="#memes">
              

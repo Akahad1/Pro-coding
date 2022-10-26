@@ -1,5 +1,5 @@
-import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGoogle,FaGithub } from "react-icons/fa";
@@ -8,7 +8,8 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import './Register.css'
 
 const Register = () => {
-  const {createPasswordWithEmail,singInWithGoogle} =useContext(AuthContext)
+  const {createPasswordWithEmail,singInWithGoogle ,singInWithGithub} =useContext(AuthContext)
+  const [error,setError]=useState(null)
   const registionHandler =(event)=>{
     event.preventDefault()
     const form =event.target
@@ -20,9 +21,16 @@ const Register = () => {
     .then(result=>{
       const user =result.user
       console.log(user)
+      form.reset()
 
     })
-    .catch(error=>console.error("error",error))
+    .catch(error=>{
+      const errorMessage = error.message;
+      setError(errorMessage)
+      console.error("error",error)
+
+     } )
+    
 
 
   }
@@ -34,10 +42,28 @@ const Register = () => {
       const user =result.user
       console.log(user)
     })
-    .catch(error=>console.error("error",error))
+    .catch(error=>{
+      const errorMessage = error.message;
+      setError(errorMessage)
+      console.error("error",error)
+    })
+  }
+   
 
-
+  const githubSingInHandler=()=>{
+    const githubProvider =new GithubAuthProvider()
+    singInWithGithub(githubProvider)
+    .then(result=>{
+      const user =result.user
+      console.log(user)
+    })
+    .catch(error=>{
+      const errorMessage = error.message;
+      setError(errorMessage)
+      console.error("error",error)
+    })
     
+
   }
     return (
         <div className='form'>
@@ -45,6 +71,11 @@ const Register = () => {
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Name</Form.Label>
         <Form.Control type="text" name='name' placeholder="Enter Name" />
+        
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>PhotoURL</Form.Label>
+        <Form.Control type="text" name='photourl' placeholder="Enter photourl" />
         
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -60,14 +91,15 @@ const Register = () => {
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
-      <p>Already you have account <Link to="/login">plese logIn</Link></p>
+      <p>Already you have account <Link to="/login">please logIn</Link></p>
+      <p className='text-danger'>{error}</p>
       <Button variant="primary" type="submit">
         Submit
       </Button>
       
     </Form>
     <div className='mt-2 lg: d-flex justify-content-center'>
-    <Button variant="outline-dark"> <FaGithub />  Sing In with Github</Button>
+    <Button onClick={githubSingInHandler} variant="outline-dark"> <FaGithub />  Sing In with Github</Button>
       <Button onClick={googleSingupHandler} className='mx-4' variant="outline-info"> <FaGoogle /> Sing In with Google</Button>
     </div>
             

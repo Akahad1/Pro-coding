@@ -5,7 +5,7 @@ const Home = () => {
     return (
         <div className='home'>
             <div className='body'>
-            <p className='paragarg '><strong>Wellcome</strong> to our Pro-Courses</p>
+            {/* <p className='paragarg '><strong>Wellcome</strong> to our Pro-Courses</p> */}
 
             </div>
             

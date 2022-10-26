@@ -20,6 +20,7 @@ import Main from '../layout/Main';
         {path:"/register",element: <Register></Register>}
     ]
     
-}
+},
+{path:'*',element:"YOU RONG TEXT TYPING"}
 
 ])
