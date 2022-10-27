@@ -38,11 +38,13 @@
 }
 #dark{
   background-color: #282c34;
-  height: 100vh;
+  height: 200vh;
+  ;
+ 
 }
 #light{
   background-color: azure;
-  height: 100vh;
+  height: 200vh;
   
     
 }
