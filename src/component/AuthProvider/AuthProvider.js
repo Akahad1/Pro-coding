@@ -7,6 +7,7 @@ import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithE
 
 const AuthProvider = ({children}) => {
     const [user,setuser]=useState(null)
+    const[loding,setLoding]=useState(true)
     // Registion
     const createPasswordWithEmail =(email, password)=>{
         return createUserWithEmailAndPassword(auth, email, password)
@@ -35,7 +36,9 @@ const AuthProvider = ({children}) => {
 
     // sing in
 
+
     const login =(email,password)=>{
+        setLoding(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
@@ -44,6 +47,7 @@ const AuthProvider = ({children}) => {
         const unsubscribe =onAuthStateChanged(auth,(currentUser)=>{
             console.log(currentUser)
             setuser(currentUser)
+            setLoding(false)
 
         })
         return ()=>unsubscribe
@@ -54,6 +58,7 @@ const AuthProvider = ({children}) => {
         createPasswordWithEmail,
         logOut,
         singInWithGithub,
+        loding,
         profileUpdata,
         login,
         

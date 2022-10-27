@@ -1,14 +1,18 @@
 import React, { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../component/AuthProvider/AuthProvider';
 
 const PriventRouter = ({children}) => {
-    const {user}=useContext(AuthContext)
+    const location=useLocation()
+    const {user,loding}=useContext(AuthContext)
+    if(loding){
+        return <div>loding...</div>
+    }
     if(user){
         return children
       }
     return (
-        <Navigate to="/login">
+        <Navigate to="/login"  state={{from:location}} replace>
 
         </Navigate>
     );

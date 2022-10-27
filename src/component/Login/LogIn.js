@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
@@ -9,7 +9,13 @@ import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 const LogIn = () => {
   const {singInWithGoogle,singInWithGithub,login}=useContext(AuthContext)
   const [error,setError]=useState(null)
-  const navigate =useNavigate()
+
+  
+  const location =useLocation()
+  const navigate=useNavigate()
+  const from =location.state?.from?.pathname || '/'
+
+
   const singInHandler=(event)=>{
     event.preventDefault()
     const form=event.target
@@ -21,6 +27,7 @@ const LogIn = () => {
       const user=result.user
       console.log(user)
       form.reset()
+      navigate(from, {replace:true})
     })
     .catch(error=>{
       console.error("error",error)
@@ -47,7 +54,7 @@ const LogIn = () => {
     .then(result=>{
       const user =result.user
       console.log(user)
-      navigate('/')
+     
     })
     .catch(error=>{
       const errorMessage = error.message;
