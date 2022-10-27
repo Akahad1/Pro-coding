@@ -1,6 +1,27 @@
-# Project Title
+* Project Title
 
 This is lerning website
+
+* Deployment
+
+To deploy this project run
+
+```bash
+  npm run build
+
+```
+* FAQ
+
+user information inculds the sites
+
+* Authors
+
+- [@octokatherine]('https://github.com/Akahad1')
+* 🔗 Links
+https://github.com/programming-hero-web-course1/b610-learning-platform-client-side-Akahad1#readme
+
+
+
 
 
 
