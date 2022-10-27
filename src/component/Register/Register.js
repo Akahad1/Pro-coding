@@ -53,7 +53,7 @@ const Register = () => {
   const allUpdate=(name,photourl)=>{
     const profile={
       displayName:name,
-      PhotoURL:photourl
+      photoURL:photourl
     }
     profileUpdata(profile)
     .then(result=>{

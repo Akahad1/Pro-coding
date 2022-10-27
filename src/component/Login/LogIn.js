@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,8 +7,29 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const LogIn = () => {
-  const {singInWithGoogle,singInWithGithub}=useContext(AuthContext)
+  const {singInWithGoogle,singInWithGithub,login}=useContext(AuthContext)
+  const [error,setError]=useState(null)
   const navigate =useNavigate()
+  const singInHandler=(event)=>{
+    event.preventDefault()
+    const form=event.target
+    const email=form.email.value
+    const password=form.password.value
+    console.log(email,password)
+    login(email,password)
+    .then(result=>{
+      const user=result.user
+      console.log(user)
+      form.reset()
+    })
+    .catch(error=>{
+      console.error("error",error)
+      const errorMessage = error.message;
+      setError(errorMessage)
+    })
+   }
+
+
 
 
   const googleSingupHandler=()=>{
@@ -30,9 +51,10 @@ const LogIn = () => {
     })
     .catch(error=>{
       const errorMessage = error.message;
-      // setError(errorMessage)
+      setError(errorMessage)
       console.error("error",error)
     })
+    
     
 
   }
@@ -42,7 +64,7 @@ const LogIn = () => {
 
             <div className='form'>
               <h1 className='text-info mb-3'>Log In</h1>
-            <Form >
+            <Form onSubmit={singInHandler}>
       
         
       
@@ -60,7 +82,7 @@ const LogIn = () => {
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
       <p> Have not Your  account <Link to="/register">please Register</Link></p>
-      {/* <p className='text-danger'>{error}</p> */}
+      <p className='text-danger'>{error}</p>
       <Button variant="primary" type="submit">
         Submit
       </Button>
