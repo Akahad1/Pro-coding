@@ -8,14 +8,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import ReactSwitch from 'react-switch';
 
 const Header = () => {
-  const {user,logOut}=useContext(AuthContext)
+  const {user,logOut,themeTogoole,them}=useContext(AuthContext)
   const logOutHandler=()=>{
     logOut()
     .then(()=>{})
     .catch(error=>console.error("error",error))
 
+  }
+  // const onmouseHandler=()=>{
+  //   alert("Sahad")
   }
     return (
         <div>
@@ -27,7 +31,7 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
           <Nav.Link href="#pricing"><Link className='anhor' to="/">Home</Link></Nav.Link>
-            <Nav.Link href="#features"><Link to='/faq'className='anhor'> FAQ</Link></Nav.Link>
+            <Nav.Link href="#features"><Link to='/fqe'className='anhor'> FAQ</Link></Nav.Link>
             <Nav.Link href="#pricing"><Link className='anhor' to="/blog">Blogs</Link></Nav.Link>
             <Nav.Link href="#pricing"><Link className='anhor' to="/courses">Courses</Link></Nav.Link>
             
@@ -39,7 +43,7 @@ const Header = () => {
             {user?.uid ?
              <>
              <Nav.Link href="#deets"><Link onClick={logOutHandler}  className='anhor' to='/register'>Log Out</Link></Nav.Link>
-             <Nav.Link href="#pricing"><Image className='img-size' rounded src={user.photoURL}></Image></Nav.Link>
+             <Nav.Link href="#pricing"><Image onMouseEnter={onmouseHandler} className='img-size' rounded src={user.photoURL}></Image></Nav.Link>
              
              
              </>
@@ -48,7 +52,7 @@ const Header = () => {
              <Link  className='anhor'  to='/register'>Register</Link></> }
             
             <Nav.Link eventKey={2} href="#memes">
-             
+             <ReactSwitch onChange={themeTogoole} checked={them=="dark"}></ReactSwitch>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

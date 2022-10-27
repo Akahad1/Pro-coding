@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { Link, useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const CoursesDetails = () => {
+  const {them}=useContext(AuthContext)
     const data=useLoaderData()
     const {name,titel,img,body,id}= data
     
     return (
-        <div className='mt-5 d-flex justify-content-center align-items-center'> 
+        <div id={them} className=' d-flex justify-content-center align-items-center'> 
             <Card style={{ width: '25rem' }}>
       <Card.Img variant="top" src={img} />
       <Card.Body>

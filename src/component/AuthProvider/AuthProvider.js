@@ -8,6 +8,10 @@ import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithE
 const AuthProvider = ({children}) => {
     const [user,setuser]=useState(null)
     const[loding,setLoding]=useState(true)
+    const [them,setThems]=useState("dark")
+  const themeTogoole=()=>{
+    setThems((cur)=>cur =="light"? 'dark':"light")
+  }
     // Registion
     const createPasswordWithEmail =(email, password)=>{
         return createUserWithEmailAndPassword(auth, email, password)
@@ -61,6 +65,8 @@ const AuthProvider = ({children}) => {
         loding,
         profileUpdata,
         login,
+        themeTogoole,
+        them,setThems,
         
         singInWithGoogle}
     return (
