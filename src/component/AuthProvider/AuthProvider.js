@@ -33,6 +33,12 @@ const AuthProvider = ({children}) => {
         return updateProfile(auth.currentUser,profile)
     }
 
+    // sing in
+
+    const login =(email,password)=>{
+        return signInWithEmailAndPassword(auth,email,password)
+    }
+
     // some changess
     useEffect(()=>{
         const unsubscribe =onAuthStateChanged(auth,(currentUser)=>{
@@ -49,6 +55,7 @@ const AuthProvider = ({children}) => {
         logOut,
         singInWithGithub,
         profileUpdata,
+        login,
         
         singInWithGoogle}
     return (

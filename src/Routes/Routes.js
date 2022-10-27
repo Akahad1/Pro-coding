@@ -9,6 +9,7 @@ import Home from '../component/Home/Home';
 import LogIn from '../component/Login/LogIn';
 import Register from '../component/Register/Register';
 import Main from '../layout/Main';
+import PriventRouter from './PriventRouter';
 // import Blog from '../component/Blog/Blog';
 
 
@@ -26,7 +27,7 @@ import Main from '../layout/Main';
         {path:"/courses/:id" ,element :<CoursesDetails></CoursesDetails>,
         loader: async({params})=>fetch(`http://localhost:5000/courses/${params.id}`)
     
-    },{path:"/chackout/:id",element:<ChackOut></ChackOut>,
+    },{path:"/chackout/:id",element:<PriventRouter><ChackOut></ChackOut></PriventRouter>,
     loader: async({params})=>fetch(`http://localhost:5000/courses/${params.id}`)
 
  }

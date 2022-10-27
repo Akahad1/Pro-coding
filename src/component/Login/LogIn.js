@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle,FaGithub } from "react-icons/fa";
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const LogIn = () => {
   const {singInWithGoogle,singInWithGithub}=useContext(AuthContext)
+  const navigate =useNavigate()
 
 
   const googleSingupHandler=()=>{
@@ -25,6 +26,7 @@ const LogIn = () => {
     .then(result=>{
       const user =result.user
       console.log(user)
+      navigate('/')
     })
     .catch(error=>{
       const errorMessage = error.message;
