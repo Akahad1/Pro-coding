@@ -19,6 +19,8 @@ const CoursesDetails = () => {
           {body}
         </Card.Text>
         <Button variant="dark"><Link to={`/chackout/${id}`} >Get premiumaess</Link></Button>
+        <Button className='mx-3' variant="dark">Dowloaed pdf</Button>
+        
       </Card.Body>
     </Card>
             

@@ -18,8 +18,9 @@ const Header = () => {
     .catch(error=>console.error("error",error))
 
   }
-  // const onmouseHandler=()=>{
-  //   alert("Sahad")
+  const onmouseHandler=()=>{
+   const name=user.displayName
+   alert(name)
   }
     return (
         <div>
