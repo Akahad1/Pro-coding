@@ -11,7 +11,7 @@ const Coueselayout = () => {
         <div id={them}>
             <Header></Header>
             <Row>
-                <Col lg="3" className='bg-info  lg: d-block'>
+                <Col lg="3" className='bg-info  d-none d-lg-block'>
                     <CourseLeftSide></CourseLeftSide>
                 </Col>
                 <Col>

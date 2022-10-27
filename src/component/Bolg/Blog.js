@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 
 const Blogs = () => {
+  const {them}=useContext(AuthContext)
     return (
-        <div>
+        <div id={them}>
             <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
         <Accordion.Header>1. what is cors?</Accordion.Header>

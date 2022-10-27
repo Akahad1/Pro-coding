@@ -10,7 +10,7 @@ const CoursesDetails = () => {
     
     return (
         <div id={them} className=' d-flex justify-content-center align-items-center'> 
-            <Card style={{ width: '25rem' }}>
+            <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={img} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>

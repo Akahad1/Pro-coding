@@ -9,6 +9,7 @@ import Image from 'react-bootstrap/Image'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import ReactSwitch from 'react-switch';
+import CourseLeftSide from '../CouresLftside/CourseLeftSide';
 
 const Header = () => {
   const {user,logOut,themeTogoole,them}=useContext(AuthContext)
@@ -35,7 +36,7 @@ const Header = () => {
             <Nav.Link href="#features"><Link to='/fqe'className='anhor'> FAQ</Link></Nav.Link>
             <Nav.Link href="#pricing"><Link className='anhor' to="/blog">Blogs</Link></Nav.Link>
             <Nav.Link href="#pricing"><Link className='anhor' to="/courses">Courses</Link></Nav.Link>
-            
+            <Nav.Link className='d-lg-none' href="#pricing"><CourseLeftSide></CourseLeftSide></Nav.Link>
           </Nav>
           <Nav>
           

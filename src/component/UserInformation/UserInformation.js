@@ -4,9 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const UserInformation = () => {
-    const {user}=useContext(AuthContext)
+    const {user,them}=useContext(AuthContext)
     return (
-        <div>
+        <div id={them}>
             <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>User name</Form.Label>

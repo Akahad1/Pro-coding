@@ -4,15 +4,12 @@ import './App.css';
 import Header from './component/Header/Header';
 import { router } from './Routes/Routes';
 
-const ThemeContexte =createContext('light')
+
 
 
 
 function App() {
-  const [them,setThems]=useState("dark")
-  const themeTogoole=()=>{
-    setThems((cur)=>cur =="light"? 'dark':"light")
-  }
+  
   return (
     
     <div >
